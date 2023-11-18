@@ -7,9 +7,7 @@ header {
     z-index: 40;
     height: auto;
 }
-.logo {
-    padding: 26px 0px;
-}
+
 .logo a {
     color: #3a76cb;
     text-transform: capitalize;
