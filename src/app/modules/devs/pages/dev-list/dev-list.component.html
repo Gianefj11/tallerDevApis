@@ -1,0 +1,37 @@
+<div class="container">
+
+  <div class="input-container">
+
+    <h1>Developers</h1>
+
+    <input type="text" placeholder="Buscar developer..." [formControl]="searchText" />
+
+  </div>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Edad</th>
+        <th>País</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let dev of devs">
+        <td>{{dev.first_name}}</td>
+        <td>{{dev.last_name}}</td>
+        <td>{{dev.years}}</td>
+        <td>{{dev.country}}</td>
+        <td>
+          <button class="btn btn-primary" (click)="editDev(dev)">Editar</button>
+          <button class="btn btn-danger" (click)="deleteDev(dev)">Eliminar</button>
+      </tr>
+      <tr *ngIf="devs.length === 0">
+        <td colspan="5">No hay developers</td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
