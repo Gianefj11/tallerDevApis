@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Dev } from 'src/app/interface/interface';
 import { DevsService } from '../../services/devs.service';
@@ -11,7 +11,7 @@ declare var window: any;
   templateUrl: './dev-list.component.html',
   styleUrls: ['./dev-list.component.css']
 })
-export class DevListComponent implements OnInit {
+export class DevListComponent implements AfterViewInit {
 
   searchText!: FormControl<string | null>;
 
@@ -22,13 +22,14 @@ export class DevListComponent implements OnInit {
     this.searchText = new FormControl('');
   }
 
-  ngOnInit(): void {
-    this.getDevs();
-  }
+  // ngOnInit(): void {
+
+  // }
 
   ngAfterViewInit(): void {
+    this.getDevs();
     this.modalAddDev = new window.bootstrap.Modal(
-      document.getElementById('addDev')
+      document.getElementById('VerDetalle')
     );
   }
 
@@ -58,6 +59,7 @@ export class DevListComponent implements OnInit {
 
   addDev() {
     console.log('add');
+
     this.modalAddDev.show();
   }
 
