@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'corsheaders',
     'drf_yasg',
     'ApiToken',
-    'users'
+    'users',
+    'devsApi'
 ]
 
 MIDDLEWARE = [
@@ -142,3 +143,13 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'users.User'
+
+SWAGGER_SETTINGS = {
+   'SECURITY_DEFINITIONS': {
+      'Bearer': {
+            'type': 'apiKey',
+            'name': 'Authorization',
+            'in': 'header'
+      }
+   }
+}
