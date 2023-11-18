@@ -15,7 +15,7 @@
             <form [formGroup]="loginForm">
               <div class="form-outline mb-4">
                 <label class="form-label" for="correo">Usuario</label>
-                <input type="text" id="correo" class="form-control" formControlName="user"/>
+                <input type="email" id="correo" class="form-control" formControlName="user"/>
                 <div
                 class="container-error-message"
                 *ngIf="loginForm.get('user')?.touched
@@ -25,6 +25,15 @@
               >
                 Es requerido este campo
               </div>
+              <div
+              class="container-error-message"
+              *ngIf="loginForm.get('user')?.touched
+                                    && loginForm.get('user')?.errors?.['email']
+                                    "
+              id="error_input"
+            >
+             Email invalido
+            </div>
               </div>
               <div class="form-outline mb-4">
                 <label class="form-label" for="password">Contraseña</label>

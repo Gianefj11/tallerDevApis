@@ -19,6 +19,7 @@ export class LoginComponent {
 
   user:User={
     username:'',
+    email:'',
     password:''
   }
 
@@ -28,13 +29,13 @@ export class LoginComponent {
     private router:Router
   ){
     this.loginForm = this.fb.group({
-      user:['',Validators.required],
+      user:['',[Validators.required,Validators.email]],
       password:['',Validators.required]
     })
   }
 
   getUser(){  
-    this.user.username = this.loginForm.get('user')?.value || '';
+    this.user.email = this.loginForm.get('user')?.value || '';
     this.user.password = this.loginForm.get('password')?.value || '';
 
     this.auth.login(this.user).subscribe({

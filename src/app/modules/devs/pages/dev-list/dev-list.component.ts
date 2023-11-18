@@ -4,6 +4,8 @@ import { Dev } from 'src/app/interface/interface';
 import { DevsService } from '../../services/devs.service';
 import { HttpResponse } from '@angular/common/http';
 
+declare var window: any;
+
 @Component({
   selector: 'app-dev-list',
   templateUrl: './dev-list.component.html',
@@ -14,6 +16,7 @@ export class DevListComponent implements OnInit {
   searchText!: FormControl<string | null>;
 
   devs: Dev[] = [];
+  modalAddDev:any;
 
   constructor( private devServ: DevsService ) {
     this.searchText = new FormControl('');
@@ -21,6 +24,12 @@ export class DevListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getDevs();
+  }
+
+  ngAfterViewInit(): void {
+    this.modalAddDev = new window.bootstrap.Modal(
+      document.getElementById('addDev')
+    );
   }
 
   search() {
@@ -49,6 +58,7 @@ export class DevListComponent implements OnInit {
 
   addDev() {
     console.log('add');
+    this.modalAddDev.show();
   }
 
 }

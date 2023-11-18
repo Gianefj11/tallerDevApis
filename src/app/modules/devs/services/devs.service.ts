@@ -14,22 +14,22 @@ export class DevsService {
   constructor( private http: HttpClient ) { }
 
   getDevs(): Observable<HttpResponse<Dev[]>>{
-    return this.http.get<Dev[]>(`${this.apiURL}/devs`, {observe: 'response'});
+    return this.http.get<Dev[]>(`${this.apiURL}/api/devs`, {observe: 'response'});
   }
 
   getDevById(id: number): Observable<HttpResponse<Dev>>{
-    return this.http.get<Dev>(`${this.apiURL}/devs/${id}`, {observe: 'response'});
+    return this.http.get<Dev>(`${this.apiURL}/api/devs/${id}`, {observe: 'response'});
   }
 
   createDev(dev: Dev): Observable<HttpResponse<Dev>>{
-    return this.http.post<Dev>(`${this.apiURL}/devs`, dev, {observe: 'response'});
+    return this.http.post<Dev>(`${this.apiURL}/api/devs`, dev, {observe: 'response'});
   }
 
   updateDev(dev: Dev): Observable<HttpResponse<Dev>>{
-    return this.http.put<Dev>(`${this.apiURL}/devs/${dev.id}`, dev, {observe: 'response'});
+    return this.http.put<Dev>(`${this.apiURL}/api/devs/${dev.id}`, dev, {observe: 'response'});
   }
 
   deleteDev(id: number): Observable<HttpResponse<Dev>>{
-    return this.http.delete<Dev>(`${this.apiURL}/devs/${id}`, {observe: 'response'});
+    return this.http.delete<Dev>(`${this.apiURL}/api/devs/${id}`, {observe: 'response'});
   }
 }
