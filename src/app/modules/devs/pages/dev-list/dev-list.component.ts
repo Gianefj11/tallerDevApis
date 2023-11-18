@@ -47,4 +47,8 @@ export class DevListComponent implements OnInit {
     console.log(dev);
   }
 
+  addDev() {
+    console.log('add');
+  }
+
 }
