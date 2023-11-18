@@ -1,14 +1,15 @@
 <div class="container">
 
-  <div class="input-container mb-4">
+  <div class="mb-4 d-flex justify-content-between">
 
-    <h1 class="mb-4">Developers</h1>
+    <h3 class="">Developers</h3>
 
-    <input type="text" placeholder="Buscar developer..." [formControl]="searchText" />
+    <div class="d-flex gap-4">
+      <input type="text" class="form-control" placeholder="Buscar developer..." [formControl]="searchText" />
 
-    <button class="btn btn-primary" (click)="addDev()">Agregar</button>
-
-  </div>
+      <button class="btn btn-primary" (click)="addDev()">Agregar</button>  
+    </div>
+</div>
 
   <table class="table">
     <thead>
