@@ -12,7 +12,7 @@ export class DevsService {
   apiURL: string = environment.apiUrl;
 
   constructor( private http: HttpClient ) { }
-
+ 
   getDevs(): Observable<HttpResponse<Dev[]>>{
     return this.http.get<Dev[]>(`${this.apiURL}/api/devs`, {observe: 'response'});
   }

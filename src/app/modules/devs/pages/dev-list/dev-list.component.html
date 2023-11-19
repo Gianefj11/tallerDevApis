@@ -27,7 +27,8 @@
         <td>{{dev.last_name}}</td>
         <td>{{dev.years}}</td>
         <td>{{dev.country}}</td>
-        <td>
+        <td class="d-flex gap-3">
+          <button class="btn btn-primary">Consultar</button>
           <button class="btn btn-primary" (click)="editDev(dev)">Editar</button>
           <button class="btn btn-danger" (click)="deleteDev(dev)">Eliminar</button>
       </tr>

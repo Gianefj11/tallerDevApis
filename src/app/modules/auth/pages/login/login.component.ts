@@ -4,6 +4,7 @@ import { AuthService } from '../../services/auth.service';
 import { User } from '../../interface/interface';
 import { of } from 'rxjs';
 import { Router } from '@angular/router';
+import { TokenStorageService } from '../../services/token-storage.service';
 
 @Component({
   selector: 'app-login',
@@ -26,6 +27,7 @@ export class LoginComponent {
   constructor(
     private fb: FormBuilder,
     private auth:AuthService,
+    private token:TokenStorageService,
     private router:Router
   ){
     this.loginForm = this.fb.group({
@@ -39,8 +41,9 @@ export class LoginComponent {
     this.user.password = this.loginForm.get('password')?.value || '';
 
     this.auth.login(this.user).subscribe({
-      next:() =>{
+      next:(data) =>{
         this.auth.isLoged = of(true);
+        this.token.SaveToken(data.body);
         this.router.navigate(['devs']);
       },
       error: (err) => {
