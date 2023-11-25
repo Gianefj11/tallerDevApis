@@ -1,1 +1,83 @@
-<p>register works!</p>
+<!-- Section: Design Block -->
+<div class="text-center text-lg-start">
+  <div class="container py-4 d-flex justify-content-center">
+    <div class="row g-0 d-flex justify-content-center">
+      <div class="col-lg-6 mb-5 mb-lg-0">
+        <div class="d-flex flex-column justify-content-center formLogin">
+          <div
+          class="card cascading-right"
+
+        >
+          <div class="card-body p-5 shadow-5">
+            <div class="text-center">
+              <h2 class="fw-bold mb-5">Logo</h2>
+            </div>
+            <form [formGroup]="registerForm">
+              <div class="form-outline mb-4">
+                <label class="form-label" for="correo">Usuario</label>
+                <input type="email" id="correo" class="form-control" formControlName="username"/>
+                <div
+                  class="container-error-message"
+                  *ngIf="registerForm.get('username')?.touched
+                                        && registerForm.get('username')?.errors?.['required']
+                                        "
+                  id="error_input"
+                >
+                  Es requerido este campo
+                </div>
+              </div>
+              <div class="form-outline mb-4">
+                <label class="form-label" for="correo">Correo</label>
+                <input type="email" id="correo" class="form-control" formControlName="email"/>
+                <div
+                  class="container-error-message"
+                  *ngIf="registerForm.get('email')?.touched
+                                        && registerForm.get('email')?.errors?.['required']
+                                        "
+                  id="error_input"
+                >
+                  Es requerido este campo
+                </div>
+              </div>
+              <div class="form-outline mb-4">
+                <label class="form-label" for="password">Contraseña</label>
+                <input
+                  type="password"
+                  id="password"
+                  class="form-control"
+                  formControlName="password"
+                />
+                <div
+                  class="container-error-message"
+                  *ngIf="registerForm.get('password')?.touched
+                                        && registerForm.get('password')?.errors?.['required']
+                                        "
+                  id="error_input"
+                >
+                  Es requerido este campo
+                </div>
+              </div>
+
+              <div class="d-flex justify-content-end">
+                <button type="submit" class="btn btn-primary btn-block mb-4" (click)="register()" [disabled]="registerForm.invalid">
+                  Registrarse
+                </button>
+              </div>
+
+            </form>
+          </div>
+        </div>
+        </div>
+
+      </div>
+
+      <div class="col-lg-6 mb-5 mb-lg-0">
+        <img
+          src="../../../../../assets/img/estudiantes-universitarios-que-tienen-clase-tic_1098-17195.jpg"
+          class="img-nav rounded-4 shadow-4"
+          alt=""
+        />
+      </div>
+    </div>
+  </div>
+</div>
