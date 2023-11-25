@@ -14,7 +14,6 @@ export const authMatchGuard: CanMatchFn = (route, segments) => {
         router.navigate(['/auth/login'])
         verifyLog = false;
       } else {
-        router.navigate(['/devs/home'])
         verifyLog = true;
       }
     }

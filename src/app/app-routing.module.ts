@@ -9,9 +9,7 @@ import { authMatchGuard } from './guards/auth-match.guard';
 const routes: Routes = [
   {
     path: "auth",
-    loadChildren: () => import("./modules/auth/auth.module").then(m => m.AuthModule),
-    canActivate: [authActivateGuard],
-    canMatch: [authMatchGuard]
+    loadChildren: () => import("./modules/auth/auth.module").then(m => m.AuthModule)
   },
   {
     path: "devs",
