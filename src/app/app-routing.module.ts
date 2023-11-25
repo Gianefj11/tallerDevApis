@@ -1,6 +1,10 @@
+// Angular Imports
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { authGuardGuard } from './guards/auth-guard.guard';
+
+// Guards
+import { authActivateGuard } from './guards/auth-activate.guard';
+import { authMatchGuard } from './guards/auth-match.guard';
 
 const routes: Routes = [
   {
@@ -10,7 +14,8 @@ const routes: Routes = [
   {
     path: "devs",
     loadChildren: () => import("./modules/devs/devs.module").then(m => m.DevsModule),
-    canActivate: [authGuardGuard]
+    canActivate: [authActivateGuard],
+    canMatch: [authMatchGuard]
   },
   {
     path: "",
