@@ -25,4 +25,14 @@ export class AuthService {
     return this.http.post<Login>(url, body, {observe: 'response'});
   }
 
+  register(user:User):Observable<HttpResponse<Login>> {
+    const url = `${ this.baseUrl }/auth/register`;
+    const body = {
+      username: user.username,
+      email: user.email,
+      password: user.password
+    }
+    return this.http.post<Login>(url, body, {observe: 'response'});
+  }
+
 }
