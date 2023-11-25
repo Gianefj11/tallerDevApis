@@ -5,6 +5,8 @@ import { DevsService } from '../../services/devs.service';
 import { HttpResponse } from '@angular/common/http';
 import { DevRegister } from '../../interfaces/interfaces';
 
+import { ToastrService } from 'ngx-toastr';
+
 declare var window: any;
 
 @Component({
@@ -57,7 +59,9 @@ export class DevListComponent implements AfterViewInit {
 
   constructor( 
     private fb: FormBuilder,
-    private devServ: DevsService
+    private devServ: DevsService,
+    private toastr: ToastrService,
+
      ) {
     this.searchText = new FormControl('');
     this.registerForm = this.fb.group({
@@ -140,9 +144,10 @@ export class DevListComponent implements AfterViewInit {
           next: (data) =>{
               this.getDevs();
               this.modalModificarDev.hide();
+              this.toastr.success('Editado Correctamente');
           },
           error: (err) => {
-
+            this.toastr.error('Error al Editar');
           }
         }
       )
@@ -177,9 +182,10 @@ export class DevListComponent implements AfterViewInit {
           console.log('registrado');
           this.getDevs();
           this.modalAddDev.hide();
+          this.toastr.success('Registrado Correctamente');
       },
       error: (err) => {
-
+        this.toastr.error('Error al Registrar');
       }
     });
 
