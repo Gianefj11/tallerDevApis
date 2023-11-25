@@ -17,6 +17,7 @@ export class DevListComponent implements AfterViewInit {
 
   devs: Dev[] = [];
   modalAddDev:any;
+  modalModificarDev:any;
 
   constructor( private devServ: DevsService ) {
     this.searchText = new FormControl('');
@@ -31,6 +32,9 @@ export class DevListComponent implements AfterViewInit {
     this.modalAddDev = new window.bootstrap.Modal(
       document.getElementById('VerDetalle')
     );
+    this.modalModificarDev = new window.bootstrap.Modal(
+      document.getElementById('editarDev')
+    )
   }
 
   search() {
@@ -50,7 +54,7 @@ export class DevListComponent implements AfterViewInit {
   }
 
   editDev(dev: Dev) {
-    console.log(dev);
+    this.modalModificarDev.show();
   }
 
   deleteDev(dev: Dev) {
@@ -58,9 +62,7 @@ export class DevListComponent implements AfterViewInit {
   }
 
   addDev() {
-    console.log('add');
-
-    this.modalAddDev.show();
+      this.modalAddDev.show();
   }
 
 }
