@@ -457,16 +457,15 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">Elimninar Desarrollador</h5>
-        <button type="button" class="close" data-dismiss="modal" (click)="CloseModalEliminarDev()"  aria-label="Close">
-          <span aria-hidden="true">&times;</span>
+        <button type="button" class="btn-close" data-dismiss="modal" (click)="CloseModalEliminarDev()"  aria-label="Close">
         </button>
       </div>
       <div class="modal-body">
-        <p>Desea eliminar al Desarrollador?</p>
+        <p>¿Desea eliminar al Desarrollador: {{devEliminar.first_name}} {{devEliminar.last_name}}?</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" (click)="EliminarDev()">Eliminar</button>
         <button type="button" class="btn btn-secondary" (click)="CloseModalEliminarDev()" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-danger" (click)="EliminarDev()">Eliminar</button>
       </div>
     </div>
   </div>

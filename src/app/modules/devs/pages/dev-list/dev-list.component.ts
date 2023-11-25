@@ -53,6 +53,15 @@ export class DevListComponent implements AfterViewInit {
     country:''
   }
 
+  devEliminar:Dev = {
+    id:0,
+    first_name:'',
+    last_name:'',
+    email:'',
+    years:0,
+    country:''
+  }
+
   devs: Dev[] = [];
   modalAddDev:any;
   modalModificarDev:any;
@@ -198,13 +207,13 @@ export class DevListComponent implements AfterViewInit {
 
   showModalDelete(dev: any) {
     this.modalDeleteDev.show();
-    this.dev = dev;
+    this.devEliminar = dev;
 
   }
 
   // Falta limpiar la Variable
   EliminarDev() {
-    this.devServ.deleteDev(this.dev.id).subscribe({
+    this.devServ.deleteDev(this.devEliminar.id).subscribe({
       next: (data) => {
         console.log('registrado');
         this.getDevs();
