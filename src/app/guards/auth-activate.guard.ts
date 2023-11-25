@@ -14,6 +14,7 @@ export const authActivateGuard: CanActivateFn = (route, state) => {
         router.navigate(['/auth/login'])
         verifyLog = false;
       } else {
+        router.navigate(['/devs/home'])
         verifyLog = true;
       }
     }
