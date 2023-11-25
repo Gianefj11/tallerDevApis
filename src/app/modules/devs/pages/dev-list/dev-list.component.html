@@ -1,15 +1,18 @@
 <div class="container">
-
   <div class="mb-4 d-flex justify-content-between">
-
     <h3 class="">Developers</h3>
 
     <div class="d-flex gap-4">
-      <input type="text" class="form-control" placeholder="Buscar developer..." [formControl]="searchText" />
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Buscar developer..."
+        [formControl]="searchText"
+      />
 
-      <button class="btn btn-primary" (click)="addDev()">Agregar</button>  
+      <button class="btn btn-primary" (click)="addDev()">Agregar</button>
     </div>
-</div>
+  </div>
 
   <table class="table table-striped table-hover">
     <thead>
@@ -23,69 +26,246 @@
     </thead>
     <tbody>
       <tr *ngFor="let dev of devs">
-        <td>{{dev.first_name}}</td>
-        <td>{{dev.last_name}}</td>
-        <td>{{dev.years}}</td>
-        <td>{{dev.country}}</td>
+        <td>{{ dev.first_name }}</td>
+        <td>{{ dev.last_name }}</td>
+        <td>{{ dev.years }}</td>
+        <td>{{ dev.country }}</td>
         <td class="d-flex gap-3">
-          <button class="btn btn-secondary">Consultar</button>
+          <!-- <button class="btn btn-secondary">Consultar</button> -->
           <button class="btn btn-primary" (click)="editDev(dev)">Editar</button>
-          <button class="btn btn-danger" (click)="deleteDev(dev)">Eliminar</button>
+          <button class="btn btn-danger" (click)="deleteDev(dev)">
+            Eliminar
+          </button>
+        </td>
       </tr>
+
       <tr *ngIf="devs.length === 0">
         <td colspan="5" class="text-center">No hay developers</td>
       </tr>
     </tbody>
   </table>
-
 </div>
 
-
 <!-- modal registrar -->
-<div class="modal fade" id="VerDetalle" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div
+  class="modal fade"
+  id="VerDetalle"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
   <div class="modal-dialog modal-dialog-centered modal-md">
     <!-- <div class="modal-dialog"> -->
     <div class="modal-content">
       <div class="modal-header">
-        <h3 class="modal-title" id="exampleModalLabel">Registrar Desarrollador</h3>
+        <h3 class="modal-title" id="exampleModalLabel">
+          Registrar Desarrollador
+        </h3>
         <!-- X -->
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
         <!--  -->
       </div>
-      <form>
+      <form [formGroup]="registerForm">
         <!-- Body de Modal -->
         <div class="modal-body">
-     
-            <div class="d-flex">
-              <div class="row">
-                <div class=" col-md-6 mb-3">
-                  <label for="nombre" class="form-label">Nombre</label>
-                  <input type="text" class="form-control" id="nombre">
+          <div class="d-flex">
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="nombre" class="form-label">Nombre</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="nombre"
+                  formControlName="nombre"
+                />
+                <div
+                  class="container-error-message"
+                  *ngIf="registerForm.get('nombre')?.touched
+                                        && registerForm.get('nombre')?.errors?.['required']
+                                        "
+                  id="error_input"
+                >
+                  Es requerido este campo
                 </div>
-                <div class=" col-md-6 mb-3">
-                  <label for="apellido" class="form-label">Apellido</label>
-                  <input type="email" class="form-control" id="apellido">
+                <div
+                  class="container-error-message"
+                  *ngIf="registerForm.get('nombre')?.touched
+                                        && registerForm.get('nombre')?.errors?.['maxlength']
+                                        "
+                  id="error_input"
+                >
+                  El minimo requerido es de 20
                 </div>
-                <!-- salto -->
-                <div class=" col-md-12 mb-3">
-                  <label for="email" class="form-label">Correo</label>
-                  <input type="email" class="form-control" id="email">
+                <div
+                  class="container-error-message"
+                  *ngIf="registerForm.get('nombre')?.touched
+                                      && registerForm.get('nombre')?.errors?.['mixlength']
+                                      "
+                  id="error_input"
+                >
+                  El maximo requerido es de 2
                 </div>
-                <div class=" col-md-6 mb-3">
-                  <label for="edad" class="form-label">Edad</label>
-                  <input type="number" class="form-control" id="edad">
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="apellido" class="form-label">Apellido</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="apellido"
+                  formControlName="apellido"
+                />
+                <div
+                  class="container-error-message"
+                  *ngIf="registerForm.get('apellido')?.touched
+                                      && registerForm.get('apellido')?.errors?.['required']
+                                      "
+                  id="error_input"
+                >
+                  Es requerido este campo
                 </div>
-                <div class=" col-md-6 mb-3">
-                  <label for="ciudad" class="form-label">Ciudad</label>
-                  <input type="text" class="form-control" id="ciudad">
+                <div
+                  class="container-error-message"
+                  *ngIf="registerForm.get('apellido')?.touched
+                                      && registerForm.get('apellido')?.errors?.['maxlength']
+                                      "
+                  id="error_input"
+                >
+                  El minimo requerido es de 20
                 </div>
-  
+                <div
+                  class="container-error-message"
+                  *ngIf="registerForm.get('apellido')?.touched
+                                    && registerForm.get('apellido')?.errors?.['mixlength']
+                                    "
+                  id="error_input"
+                >
+                  El maximo requerido es de 2
+                </div>
+              </div>
+              <!-- salto -->
+              <div class="col-md-12 mb-3">
+                <label for="email" class="form-label">Correo</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="email"
+                  formControlName="correo"
+                />
+                <div
+                  class="container-error-message"
+                  *ngIf="registerForm.get('correo')?.touched
+                                      && registerForm.get('correo')?.errors?.['required']
+                                      "
+                  id="error_input"
+                >
+                  Es requerido este campo
+                </div>
+                <div
+                  class="container-error-message"
+                  *ngIf="registerForm.get('correo')?.touched
+                                    && registerForm.get('correo')?.errors?.['email']
+                                    "
+                  id="error_input"
+                >
+                  El correo es invalido
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="edad" class="form-label">Edad</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="edad"
+                  formControlName="edad"
+                />
+                <div
+                  class="container-error-message"
+                  *ngIf="registerForm.get('edad')?.touched
+                                    && registerForm.get('edad')?.errors?.['required']
+                                    "
+                  id="error_input"
+                >
+                  Es requerido este campo
+                </div>
+                <div
+                  class="container-error-message"
+                  *ngIf="registerForm.get('edad')?.touched
+                                  && registerForm.get('edad')?.errors?.['min']
+                                  "
+                  id="error_input"
+                >
+                  La Edad minima permitida es de 18 años
+                </div>
+                <div
+                  class="container-error-message"
+                  *ngIf="registerForm.get('edad')?.touched
+                                && registerForm.get('edad')?.errors?.['max']
+                                "
+                  id="error_input"
+                >
+                  La Edad maxima permitida es de 99 años
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="ciudad" class="form-label">Ciudad</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="ciudad"
+                  formControlName="ciudad"
+                />
+                <div
+                  class="container-error-message"
+                  *ngIf="registerForm.get('ciudad')?.touched
+                                    && registerForm.get('ciudad')?.errors?.['required']
+                                    "
+                  id="error_input"
+                >
+                  Es requerido este campo
+                </div>
+                <div
+                  class="container-error-message"
+                  *ngIf="registerForm.get('ciudad')?.touched
+                                && registerForm.get('ciudad')?.errors?.['minlength']
+                                "
+                  id="error_input"
+                >
+                  los caracteres para ciudad minimos son de 4
+                </div>
+                <div
+                  class="container-error-message"
+                  *ngIf="registerForm.get('ciudad')?.touched
+                              && registerForm.get('ciudad')?.errors?.['mixlength']
+                              "
+                  id="error_input"
+                >
+                  los caracteres para ciudad maximos son de 100
+                </div>
               </div>
             </div>
+          </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-          <button type="button" class="btn btn-primary">Registrar</button>
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Cancelar
+          </button>
+          <button
+            type="submit"
+            class="btn btn-primary"
+            (click)="addDevSrv()"
+            [disabled]="registerForm.invalid"
+          >
+            Registrar
+          </button>
         </div>
       </form>
     </div>
@@ -93,47 +273,169 @@
 </div>
 
 
-
-
-
-
 <!-- modal editar -->
 <div class="modal fade" id="editarDev" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-md">
-    <!-- <div class="modal-dialog"> -->
+
     <div class="modal-content">
       <div class="modal-header">
         <h3 class="modal-title" id="exampleModalLabel">Editar Desarrollador</h3>
-        <!-- X -->
+
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        <!--  -->
+
       </div>
-      <form>
-      <!-- Body de Modal -->
+      <form [formGroup]="actualizarForm" (ngSubmit)="editDevSrv(nombreM.value, apellidoM.value, correoM.value, edadM.value, ciudadM.value)">
+
       <div class="modal-body">
    
           <div class="d-flex">
             <div class="row">
               <div class=" col-md-6 mb-3">
-                <label for="nombre" class="form-label">Nombre</label>
-                <input type="text" class="form-control" id="nombre">
+                <label for="nombreE" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="nombreE" [value]="dev.first_name" #nombreM formControlName="nombreM">
+                <div
+                class="container-error-message"
+                *ngIf="actualizarForm.get('nombreM')?.touched
+                                      && registerForm.get('nombreM')?.errors?.['required']
+                                      "
+                id="error_input"
+              >
+                Es requerido este campo
+              </div>
+              <div
+                class="container-error-message"
+                *ngIf="actualizarForm.get('nombreM')?.touched
+                                      && registerForm.get('nombreM')?.errors?.['maxlength']
+                                      "
+                id="error_input"
+              >
+                El minimo requerido es de 20
+              </div>
+              <div
+                class="container-error-message"
+                *ngIf="actualizarForm.get('nombreM')?.touched
+                                    && registerForm.get('nombreM')?.errors?.['mixlength']
+                                    "
+                id="error_input"
+              >
+                El maximo requerido es de 2
+              </div>
               </div>
               <div class=" col-md-6 mb-3">
-                <label for="apellido" class="form-label">Apellido</label>
-                <input type="email" class="form-control" id="apellido">
+                <label for="apellidoE" class="form-label">Apellido</label>
+                <input type="email" class="form-control" id="apellidoE" [value]="dev.last_name" #apellidoM formControlName="apellidoM">
+                <div
+                  class="container-error-message"
+                  *ngIf="actualizarForm.get('apellidoM')?.touched
+                                      && actualizarForm.get('apellidoM')?.errors?.['required']
+                                      "
+                  id="error_input"
+                >
+                  Es requerido este campo
+                </div>
+                <div
+                  class="container-error-message"
+                  *ngIf="actualizarForm.get('apellidoM')?.touched
+                                      && actualizarForm.get('apellidoM')?.errors?.['maxlength']
+                                      "
+                  id="error_input"
+                >
+                  El minimo requerido es de 20
+                </div>
+                <div
+                  class="container-error-message"
+                  *ngIf="actualizarForm.get('apellidoM')?.touched
+                                    && actualizarForm.get('apellidoM')?.errors?.['mixlength']
+                                    "
+                  id="error_input"
+                >
+                  El maximo requerido es de 2
+                </div>
               </div>
-              <!-- salto -->
+              
               <div class=" col-md-12 mb-3">
-                <label for="email" class="form-label">Correo</label>
-                <input type="email" class="form-control" id="email">
+                <label for="emailE" class="form-label">Correo</label>
+                <input type="email" class="form-control" id="emailE" [value]="dev.email" #correoM formControlName="correoM">
+                <div
+                class="container-error-message"
+                *ngIf="actualizarForm.get('correoM')?.touched
+                                    && registerForm.get('correoM')?.errors?.['required']
+                                    "
+                id="error_input"
+              >
+                Es requerido este campo
+              </div>
+              <div
+                class="container-error-message"
+                *ngIf="actualizarForm.get('correoM')?.touched
+                                  && actualizarForm.get('correoM')?.errors?.['email']
+                                  "
+                id="error_input"
+              >
+                El correo es invalido
+              </div>
               </div>
               <div class=" col-md-6 mb-3">
-                <label for="edad" class="form-label">Edad</label>
-                <input type="number" class="form-control" id="edad">
+                <label for="edadE" class="form-label">Edad</label>
+                <input type="number" class="form-control" id="edadE" [value]="dev.years" #edadM formControlName="edadM">
+                <div
+                class="container-error-message"
+                *ngIf="actualizarForm.get('edadM')?.touched
+                                  && actualizarForm.get('edadM')?.errors?.['required']
+                                  "
+                id="error_input"
+              >
+                Es requerido este campo
+              </div>
+              <div
+                class="container-error-message"
+                *ngIf="actualizarForm.get('edadM')?.touched
+                                && actualizarForm.get('edadM')?.errors?.['min']
+                                "
+                id="error_input"
+              >
+                La Edad minima permitida es de 18 años
+              </div>
+              <div
+                class="container-error-message"
+                *ngIf="actualizarForm.get('edadM')?.touched
+                              && actualizarForm.get('edadM')?.errors?.['max']
+                              "
+                id="error_input"
+              >
+                La Edad maxima permitida es de 99 años
+              </div>
               </div>
               <div class=" col-md-6 mb-3">
-                <label for="ciudad" class="form-label">Ciudad</label>
-                <input type="text" class="form-control" id="ciudad">
+                <label for="ciudadE" class="form-label">Ciudad</label>
+                <input type="text" class="form-control" id="ciudadE" [value]="dev.country" #ciudadM formControlName="ciudadM">
+                <div
+                class="container-error-message"
+                *ngIf="actualizarForm.get('ciudadM')?.touched
+                                  && actualizarForm.get('ciudadM')?.errors?.['required']
+                                  "
+                id="error_input"
+              >
+                Es requerido este campo
+              </div>
+              <div
+                class="container-error-message"
+                *ngIf="actualizarForm.get('ciudadM')?.touched
+                              && actualizarForm.get('ciudadM')?.errors?.['minlength']
+                              "
+                id="error_input"
+              >
+                los caracteres para ciudad minimos son de 4
+              </div>
+              <div
+                class="container-error-message"
+                *ngIf="actualizarForm.get('ciudadM')?.touched
+                            && actualizarForm.get('ciudadM')?.errors?.['mixlength']
+                            "
+                id="error_input"
+              >
+                los caracteres para ciudad maximos son de 100
+              </div>
               </div>
 
             </div>
@@ -141,7 +443,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-primary">Actualizar</button>
+        <button type="submit" class="btn btn-primary">Actualizar</button>
       </div>
     </form>
     </div>
