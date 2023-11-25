@@ -1,16 +1,19 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from './auth.service';
 const token = 'auth_session';
 @Injectable({
   providedIn: 'root'
 })
 export class TokenStorageService {
 
-  constructor( private router: Router,) { }
+  constructor( private router: Router,
+               public auth: AuthService ) { }
 
 
   signOut(): void {
     window.sessionStorage.clear();
+    this.auth.valiGian =false;
     this.router.navigate(['/auth']);
   }
 

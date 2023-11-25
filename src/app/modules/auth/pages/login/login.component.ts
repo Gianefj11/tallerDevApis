@@ -45,6 +45,7 @@ export class LoginComponent {
     this.auth.login(this.user).subscribe({
       next:(data) =>{
         this.auth.isLoged = of(true);
+        this.auth.valiGian = true;
         this.token.SaveToken(data.body);
         this.router.navigate(['devs']);
         this.toastr.success('Bienvenidos!');

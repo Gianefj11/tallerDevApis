@@ -12,6 +12,7 @@ export class AuthService {
 
   private baseUrl: string = environment.apiUrl;
   public isLoged!: Observable<boolean>;
+  public valiGian:boolean = false;
   constructor(
     private http: HttpClient
   ) { }

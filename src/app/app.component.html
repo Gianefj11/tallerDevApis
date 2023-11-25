@@ -1,5 +1,5 @@
 <div class="mb-5">
-    <app-header></app-header>
+    <app-header *ngIf="auth.valiGian == true"></app-header>
 </div>
 <div class="">
     <router-outlet></router-outlet>
