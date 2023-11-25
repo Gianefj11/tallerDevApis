@@ -56,6 +56,7 @@ export class DevListComponent implements AfterViewInit {
   devs: Dev[] = [];
   modalAddDev:any;
   modalModificarDev:any;
+  modalDeleteDev: any;
 
   constructor( 
     private fb: FormBuilder,
@@ -93,6 +94,10 @@ export class DevListComponent implements AfterViewInit {
     this.modalModificarDev = new window.bootstrap.Modal(
       document.getElementById('editarDev')
     )
+    this.modalDeleteDev = new window.bootstrap.Modal(
+      document.getElementById('deleteModal')
+    )
+    
   }
 
   search() {
@@ -190,5 +195,45 @@ export class DevListComponent implements AfterViewInit {
     });
 
   }
+
+  showModalDelete(dev: any) {
+    this.modalDeleteDev.show();
+    this.dev = dev;
+
+  }
+
+  // Falta limpiar la Variable
+  EliminarDev() {
+    this.devServ.deleteDev(this.dev.id).subscribe({
+      next: (data) => {
+        console.log('registrado');
+        this.getDevs();
+        this.modalAddDev.hide();
+      },
+      error: (err) => {
+
+      }
+    });
+    this.CloseModalEliminarDev()
+  }
+
+  CloseModalEliminarDev() {
+    this.modalDeleteDev.hide();
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
