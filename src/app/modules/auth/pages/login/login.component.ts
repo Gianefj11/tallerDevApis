@@ -5,6 +5,7 @@ import { User } from '../../interface/interface';
 import { of } from 'rxjs';
 import { Router } from '@angular/router';
 import { TokenStorageService } from '../../services/token-storage.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -28,7 +29,8 @@ export class LoginComponent {
     private fb: FormBuilder,
     private auth:AuthService,
     private token:TokenStorageService,
-    private router:Router
+    private router:Router,
+    private toastr: ToastrService,
   ){
     this.loginForm = this.fb.group({
       user:['',[Validators.required,Validators.email]],
@@ -45,9 +47,10 @@ export class LoginComponent {
         this.auth.isLoged = of(true);
         this.token.SaveToken(data.body);
         this.router.navigate(['devs']);
+        this.toastr.success('Bienvenidos!');
       },
       error: (err) => {
-
+        this.toastr.error('Error al intentar iniciar Sesión!');
       }
     });
 
