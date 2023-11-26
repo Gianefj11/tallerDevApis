@@ -19,7 +19,7 @@ export class DevsService {
   }
 
   getDevById(id: number): Observable<HttpResponse<Dev>>{
-    return this.http.get<Dev>(`${this.apiURL}/api/devs/${id}`, {observe: 'response'});
+    return this.http.get<Dev>(`${this.apiURL}/api/devs/${id}/`, {observe: 'response'});
   }
 
   createDev(dev: DevRegister): Observable<HttpResponse<DevRegister>>{
@@ -31,6 +31,6 @@ export class DevsService {
   }
 
   deleteDev(id: number): Observable<HttpResponse<Dev>>{
-    return this.http.delete<Dev>(`${this.apiURL}/api/devs/${id}`, {observe: 'response'});
+    return this.http.delete<Dev>(`${this.apiURL}/api/devs/${id}/`, {observe: 'response'});
   }
 }
